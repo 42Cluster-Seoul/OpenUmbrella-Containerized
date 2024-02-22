@@ -1,0 +1,10 @@
+.rain-container {
+    display: flex;
+    justify-content: center;
+}
+
+.weather-wrapper {
+    position: absolute;
+    margin-top: 42px;
+    text-align: center;
+}

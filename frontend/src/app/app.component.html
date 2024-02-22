@@ -1,0 +1,39 @@
+<mat-drawer-container class="main-container" [hasBackdrop]="true">
+  <mat-toolbar class="mat-toolbar">
+    <button mat-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a href="/" >{{title}}</a>
+  </mat-toolbar>
+  <mat-drawer #drawer class="drawer" mode="over">
+    <mat-list>
+      <a id="drawer-disply-wrapper" mat-list-item *ngFor="let link of links"
+      (click)="onSelectActiveLink(link.url)"
+      (click)="drawer.toggle()"
+      [routerLink]="link.url">
+          <mat-icon id="drawer-icon">{{link.icon}}</mat-icon>
+          <span id="drawer-disply">{{link.displayName}}</span>
+          <mat-divider [inset]="true"></mat-divider>
+      </a>
+      <mat-divider></mat-divider>
+      <a id="drawer-disply-wrapper" mat-list-item *ngFor="let link of noImportantLinks"
+      (click)="onSelectActiveLink(link.url)"
+      (click)="drawer.toggle()"
+      [routerLink]="link.url">
+        <mat-icon id="drawer-icon">{{link.icon}}</mat-icon>
+        <span id="drawer-disply">{{link.displayName}}</span>
+      </a>
+    </mat-list>
+  </mat-drawer>
+    <nav class="tab-nav" mat-tab-nav-bar [tabPanel]="tabPabel">
+      <a mat-tab-link *ngFor="let link of links"
+      (click)="onSelectActiveLink(link.url)"
+      [routerLink]="link.url"
+      [active]="activeLink == link.url ">
+      <mat-icon>{{link.icon}}</mat-icon>
+    </a>
+    </nav>
+    <mat-tab-nav-panel #tabPabel>
+      <router-outlet></router-outlet>
+    </mat-tab-nav-panel>  
+</mat-drawer-container>

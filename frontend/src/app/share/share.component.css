@@ -1,0 +1,94 @@
+.share-wrapper {
+    justify-content: center;
+    text-align: center;
+}
+
+.share-wrapper>h1 {
+    margin: 12px;
+}
+
+.returning-component {
+    display: flex;
+    justify-content: space-around;
+    margin: 12px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 12px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.bar {
+    flex: auto;
+    border: none;
+    height: 1px;
+    background-color: #e6e6e6;
+}
+
+.txt {
+    padding: 0 10px;
+}
+
+#reader {
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.alternative {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 0;
+}
+
+#alternative-element {
+    margin-bottom: 22px;
+}
+
+.qr-instruction-container {
+    text-align: center;
+}
+
+.center-content {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    justify-content: center;
+    text-align: center;
+    font-size: x-large;
+}
+
+/* change color of number use animate */
+@keyframes change-color {
+    from {
+        color: #6666ff;
+    }
+
+    10% {
+        color: #0099ff;
+    }
+
+    50% {
+        color: #00ff00;
+    }
+
+    75% {
+        color: #ff3399;
+    }
+
+    100% {
+        color: #6666ff;
+    }
+}
+
+.awesome-number {
+    font-size: xx-large;
+    text-align: center;
+    animation: change-color 2s infinite;
+}

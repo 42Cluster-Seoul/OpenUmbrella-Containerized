@@ -1,0 +1,62 @@
+version: "3"
+
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: frontend
+    ports:
+      - 80:80
+    restart: on-failure:3
+    networks:
+      - open_umbrella
+    # depends_on:
+    #   backend:
+    #    condition: service_healthy
+
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: backend
+    ports:
+      - 3000:3000
+    restart: on-failure:3
+    networks:
+      - open_umbrella
+    env_file:
+      - ./backend/sql_app/.env
+    depends_on:
+      mysql:
+       condition: service_healthy
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.36
+    restart: on-failure:3
+    expose:
+      - 3306
+    networks:
+      - open_umbrella
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      TZ: "Asia/Seoul"
+    env_file:
+      - .env.db
+
+volumes:
+  mysql-data:
+
+networks:
+  open_umbrella:
+    driver: bridge

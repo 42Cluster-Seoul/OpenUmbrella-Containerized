@@ -1,0 +1,12 @@
+{
+    "conventionalCommits.scopes": [
+        "rain",
+        "engine",
+        "view",
+        "contributor",
+        "share",
+        "history",
+        "login"
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib"
+}

@@ -1,0 +1,22 @@
+button:hover {
+    transform: scale(1.1);
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+.oauth-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: calc(50vh - 100px);
+}
+
+.spinner {
+    margin: 100px auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+}
