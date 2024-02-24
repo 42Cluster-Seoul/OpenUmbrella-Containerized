@@ -11,10 +11,10 @@ services:
       - 80:80
     restart: on-failure:3
     networks:
-      - open_umbrella
-    # depends_on:
-    #   backend:
-    #    condition: service_healthy
+      - front-connection
+    depends_on:
+      - backend
+      - mysql
 
   backend:
     container_name: backend
@@ -22,11 +22,12 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     image: backend
-    ports:
-      - 3000:3000
+    expose: 
+      - 3000
     restart: on-failure:3
     networks:
-      - open_umbrella
+      - front-connection
+      - db-connection
     env_file:
       - ./backend/sql_app/.env
     depends_on:
@@ -40,7 +41,7 @@ services:
     expose:
       - 3306
     networks:
-      - open_umbrella
+      - db-connection
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
       start_period: 5s
@@ -58,5 +59,7 @@ volumes:
   mysql-data:
 
 networks:
-  open_umbrella:
+  front-connection:
+    driver: bridge
+  db-connection:
     driver: bridge
