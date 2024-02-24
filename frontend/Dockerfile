@@ -28,8 +28,7 @@ FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
 COPY --from=build /usr/app/dist/open-umbrella /usr/share/nginx/html
+COPY ./my.conf /etc/nginx/conf.d/my.conf
 
 # Expose port 80
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
