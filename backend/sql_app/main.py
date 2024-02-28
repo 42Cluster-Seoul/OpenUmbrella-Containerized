@@ -18,6 +18,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # ENV
 load_dotenv()
 JWT_SECRET = os.getenv("JWT_SECRET")
+FRONTEND_URL = os.getenv("FRONTEND_URL")
 
 models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
@@ -32,6 +33,7 @@ Weather = [{"name": "Weather", "description": "Get Weather"}]
 
 # CORS
 origins = [
+    "http://localhost:3000",
     "http://localhost:4200",
     "https://localhost:4200",
     "http://openumbrella.site",
@@ -105,7 +107,7 @@ def callback(code: str = None, db: Session = Depends(get_db)):
             db, schemas.UserCreate(
                 name=user_info["username"], email=user_info["email"])
         )
-    redirect_url = f"https://openumbrella.site/jwt?jwt_token={jwt_token}"
+    redirect_url = f"{FRONTEND_URL}/jwt?jwt_token={jwt_token}"
 
     # , httponly=True
     response = RedirectResponse(url=redirect_url)
