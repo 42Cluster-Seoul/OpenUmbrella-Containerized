@@ -22,17 +22,19 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     image: backend
-    expose: 
+    expose:
       - 3000
     restart: on-failure:3
     networks:
       - front-connection
       - db-connection
     env_file:
-      - ./backend/sql_app/.env
+      - ./OpenUmbrella-env/.env
+    volumes:
+      - ./backend/sql_app/.env:/usr/app/sql_app/.env
     depends_on:
       mysql:
-       condition: service_healthy
+        condition: service_healthy
 
   mysql:
     container_name: mysql
@@ -53,7 +55,7 @@ services:
     environment:
       TZ: "Asia/Seoul"
     env_file:
-      - .env.db
+      - ./OpenUmbrella-env/.env.db
 
 volumes:
   mysql-data:

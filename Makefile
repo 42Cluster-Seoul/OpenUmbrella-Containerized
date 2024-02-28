@@ -6,6 +6,8 @@ NC := "\033[0m"
 
 # COMMANDS
 all:
+	@echo $(BLUE)🔒 Updating env submodule... $(NC)
+	@git submodule update --remote
 	@echo $(BLUE)🐋 Docker containers are starting... $(NC)
 	@docker compose up --build
 	@echo $(GREEN)✅ Successfully started! $(NC)
