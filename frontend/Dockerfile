@@ -9,7 +9,6 @@ WORKDIR /usr/app
 COPY ./angular.json /usr/app/angular.json
 COPY ./tsconfig.json /usr/app/tsconfig.json
 COPY ./tsconfig.app.json /usr/app/tsconfig.app.json
-COPY ./tsconfig.spec.json /usr/app/tsconfig.spec.json
 
 # Install all the dependencies
 COPY ./package.json /usr/app/package.json
